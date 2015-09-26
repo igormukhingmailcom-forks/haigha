@@ -22,6 +22,13 @@ class TableRecord
      */
     public function __toString()
     {
+        if (!isset($this->id)) {
+            throw new Exception(
+                "Table '%s' doesn't have field 'id'. Maybe you forgot to add 'id' fields to your fixture?",
+                $this->__meta['tablename']
+            );
+        }
+
         return (string)$this->id;
     }
 
